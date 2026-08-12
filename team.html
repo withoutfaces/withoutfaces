@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Anan Mahmoud & Vera Schmid — a Berlin-based design duo working across conceptual and experience design.">
+  <title>the team — without faces</title>
+
+  <!-- Adobe Fonts web project -->
+  <link rel="stylesheet" href="https://use.typekit.net/xtb0pvw.css">
+
+  <link rel="icon" href="assets/images/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body data-page="team">
+  <header class="header">
+    <a class="mini-logo" href="index.html" aria-label="Without Faces home">
+      <img src="assets/images/logo.png" alt="without faces">
+    </a>
+
+    <div class="header-right">
+      <nav class="navigation" id="navigation" aria-label="Main navigation">
+        <a href="index.html#experiment" data-i18n="nav.experiment">Concept</a>
+        <a href="index.html#event" data-i18n="nav.event">Past Events</a>
+        <a href="index.html#research" data-i18n="nav.research">Research</a>
+        <a href="index.html#about" data-i18n="nav.about">About us</a>
+        <a href="index.html#teams" data-i18n="nav.teams">Booking</a>
+        <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+        <a href="book.html" class="nav-cta" data-i18n="teams.cta">Request a session</a>
+      </nav>
+
+      <a class="yellow-button yellow-button--filled header-cta" href="book.html"><span data-i18n="teams.cta">Request a session</span></a>
+
+      <div class="lang-toggle" role="group" aria-label="Language / Sprache">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      </div>
+
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="navigation" data-i18n="menu.button">
+        Menu
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="about" id="team-intro">
+      <div class="portraits portraits--video">
+        <video src="assets/videos/team_video.mp4" autoplay muted loop playsinline></video>
+      </div>
+
+      <div class="copy">
+        <p class="kicker">Anan Mahmoud &amp; Vera Schmid</p>
+        <h2 data-i18n="team.heading">The Team</h2>
+        <p class="body-copy team-copy" data-i18n="team.body">
+          Anan Mahmoud &amp; Vera Schmid form a Berlin-based design duo whose work
+          focuses on conceptual and experience design. Their partnership began
+          during their master’s thesis at the Media University of Applied
+          Sciences in Berlin – the first ever collaborative thesis at their
+          university, which was awarded Best Master Thesis. Born in Egypt and
+          Austria respectively, they found that their contrasting backgrounds
+          and skills created a creative dialogue neither could have alone. Anan
+          comes from a graphic design background, Vera from motion design, but
+          together they build experiences that move between these disciplines;
+          combining conceptual art, graphic design, film, and interactivity
+          into their work. What began as a collaboration has deepened into a
+          methodology: using design to provoke, to question, and to make
+          people feel something they weren’t expecting. Their friendship has
+          shaped their work as much as their work has shaped their friendship
+          – each project is both creation and connection.
+        </p>
+        <a class="underlined-link" href="index.html#contact"><span data-i18n="cta.getInTouch">Get in touch</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div>
+      <p class="kicker" data-i18n="cta.getInTouch">Get in touch</p>
+      <h2 data-i18n="nav.contact">Contact</h2>
+      <p data-i18n="contact.body">Interested in booking a session or collaborating?</p>
+    </div>
+
+    <div class="contact-links">
+      <a href="mailto:hello@withoutfaces.design">hello@withoutfaces.design</a>
+      <a href="#">@withoutfaces.project</a>
+      <span data-i18n="contact.location">Berlin, Germany</span>
+    </div>
+
+    <a class="yellow-button" href="mailto:hello@withoutfaces.design?subject=Without%20Faces">
+      <span data-i18n="contact.button">Contact us</span> <span aria-hidden="true">→</span>
+    </a>
+
+    <div class="footer-legal">
+      <a href="impressum.html" data-i18n="impressum.heading">Imprint</a>
+    </div>
+  </footer>
+</body>
+</html>
