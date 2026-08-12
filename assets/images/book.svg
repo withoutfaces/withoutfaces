@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <rect width="1600" height="1000" fill="#efefec"/>
+  <path d="M800 245c-120 0-216 98-216 219 0 83 44 156 111 194v97h210v-97c67-38 111-111 111-194 0-121-96-219-216-219z"
+        fill="none" stroke="#111111" stroke-width="3" opacity=".28"/>
+  <text x="70" y="910" fill="#111111" font-family="Arial, Helvetica, sans-serif"
+        font-size="44" letter-spacing="6">BOOK</text>
+</svg>
