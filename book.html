@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Request a Without Faces session for your team.">
+  <title>request a session — without faces</title>
+
+  <!-- Adobe Fonts web project -->
+  <link rel="stylesheet" href="https://use.typekit.net/xtb0pvw.css">
+
+  <link rel="icon" href="assets/images/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body data-page="book">
+  <header class="header">
+    <a class="mini-logo" href="index.html" aria-label="Without Faces home">
+      <img src="assets/images/logo.png" alt="without faces">
+    </a>
+
+    <div class="header-right">
+      <nav class="navigation" id="navigation" aria-label="Main navigation">
+        <a href="index.html#experiment" data-i18n="nav.experiment">Concept</a>
+        <a href="index.html#event" data-i18n="nav.event">Past Events</a>
+        <a href="index.html#research" data-i18n="nav.research">Research</a>
+        <a href="index.html#about" data-i18n="nav.about">About us</a>
+        <a href="index.html#teams" data-i18n="nav.teams">Booking</a>
+        <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+
+      <div class="lang-toggle" role="group" aria-label="Language / Sprache">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      </div>
+
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="navigation" data-i18n="menu.button">
+        Menu
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="book-form" id="book">
+      <div class="book-intro">
+        <p class="kicker" data-i18n="book.kicker">Request a session</p>
+        <h2 data-i18n="book.heading">Tell us more</h2>
+        <p class="body-copy" data-i18n="book.body">
+          Fill in a few details and we'll get back to you.
+        </p>
+      </div>
+
+      <form class="request-form" id="request-form" novalidate>
+        <div class="form-row">
+          <label class="form-field">
+            <span data-i18n="book.field.name">Name</span>
+            <input type="text" name="name" autocomplete="name" required>
+          </label>
+          <label class="form-field">
+            <span data-i18n="book.field.email">Email</span>
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label class="form-field">
+            <span data-i18n="book.field.groupSize">Group size</span>
+            <input type="text" name="groupSize" data-i18n-placeholder="book.field.groupSizePlaceholder" placeholder="e.g. 12">
+          </label>
+          <label class="form-field">
+            <span data-i18n="book.field.groupType">Group type</span>
+            <select name="groupType">
+              <option value="" data-i18n="book.field.groupType.placeholder">Select an option</option>
+              <option value="Company or organization" data-i18n="book.field.groupType.company">Company or organization</option>
+              <option value="School or university" data-i18n="book.field.groupType.school">School or university</option>
+              <option value="Friends or family" data-i18n="book.field.groupType.friends">Friends or family</option>
+              <option value="Couple" data-i18n="book.field.groupType.couple">Couple</option>
+              <option value="Other" data-i18n="book.field.groupType.other">Other</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="form-field">
+          <span data-i18n="book.field.language">Preferred language</span>
+          <select name="preferredLanguage">
+            <option value="English" data-i18n="book.field.language.en">English</option>
+            <option value="German" data-i18n="book.field.language.de">German</option>
+          </select>
+        </label>
+
+        <label class="form-field form-field--full">
+          <span data-i18n="book.field.message">Message</span>
+          <textarea name="message" rows="4" data-i18n-placeholder="book.field.messagePlaceholder" placeholder="Preferred date, time, location, and anything else we should know."></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="yellow-button yellow-button--filled">
+            <span data-i18n="book.submit">Send request</span> <span aria-hidden="true">→</span>
+          </button>
+          <p class="form-note" data-i18n="book.note">Opens your email client with the details filled in.</p>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div>
+      <p class="kicker" data-i18n="cta.getInTouch">Get in touch</p>
+      <h2 data-i18n="nav.contact">Contact</h2>
+      <p data-i18n="contact.body">Interested in booking a session or collaborating?</p>
+    </div>
+
+    <div class="contact-links">
+      <a href="mailto:hello@veraschmid.eu">hello@veraschmid.eu</a>
+      <a href="#">@withoutfaces.project</a>
+      <span data-i18n="contact.location">Berlin, Germany</span>
+    </div>
+
+    <a class="yellow-button" href="mailto:hello@veraschmid.eu?subject=Without%20Faces">
+      <span data-i18n="contact.button">Contact us</span> <span aria-hidden="true">→</span>
+    </a>
+
+    <div class="footer-legal">
+      <a href="impressum.html" data-i18n="impressum.heading">Imprint</a>
+    </div>
+  </footer>
+</body>
+</html>
