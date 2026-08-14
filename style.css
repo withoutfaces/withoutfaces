@@ -558,8 +558,19 @@ h3 {
   background: var(--black);
 }
 
+.process > .kicker {
+  margin: 0;
+  color: var(--yellow);
+  font-family: var(--display-font);
+  font-size: clamp(22px, 2.5vw, 36px);
+  font-weight: 600;
+  line-height: 0.88;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+
 .steps-carousel {
-  --step-card-width: clamp(340px, 42vw, 700px);
+  --step-card-width: clamp(240px, 26vw, 420px);
   display: flex;
   gap: clamp(16px, 2vw, 24px);
   width: calc(100% + var(--side-space) * 2);
@@ -579,11 +590,14 @@ h3 {
 
 .step-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   flex: 0 0 var(--step-card-width);
-  min-height: clamp(440px, 42vw, 680px);
-  padding: clamp(28px, 3.4vw, 48px);
-  border-radius: 28px;
+  padding: clamp(12px, 8cqw, 32px);
+  border-radius: clamp(12px, 7cqw, 28px);
   background: rgba(252, 238, 33, 0.12);
+  overflow: hidden;
+  container-type: inline-size;
   scroll-snap-align: center;
   transition: background-color 0.45s ease;
 }
@@ -595,11 +609,11 @@ h3 {
 .step-nav {
   position: absolute;
   z-index: 2;
-  top: clamp(28px, 3.4vw, 48px);
+  top: clamp(12px, 8cqw, 32px);
   padding: 4px;
   border: 0;
   background: transparent;
-  font-size: 20px;
+  font-size: clamp(12px, 5cqw, 16px);
   line-height: 1;
   color: rgba(255, 255, 255, 0.4);
   cursor: pointer;
@@ -607,11 +621,16 @@ h3 {
 }
 
 .step-nav--prev {
-  left: clamp(28px, 3.4vw, 48px);
+  left: clamp(12px, 8cqw, 32px);
 }
 
 .step-nav--next {
-  right: clamp(28px, 3.4vw, 48px);
+  right: clamp(12px, 8cqw, 32px);
+}
+
+.step-card:first-child .step-nav--prev,
+.step-card:last-child .step-nav--next {
+  display: none;
 }
 
 .step-nav:hover,
@@ -630,19 +649,25 @@ h3 {
 
 .step-image {
   display: block;
-  height: 120px;
+  flex-shrink: 0;
+  height: clamp(40px, 34cqw, 170px);
   width: auto;
   max-width: 100%;
   object-fit: contain;
-  margin: 0 auto 24px;
+  margin: 0 auto clamp(20px, 10cqw, 56px);
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+}
+
+.step-card.is-active .step-image {
+  filter: brightness(0);
 }
 
 .step-number {
   display: block;
-  margin-bottom: 40px;
-  font-size: 12px;
+  flex-shrink: 0;
+  margin-bottom: clamp(8px, 6cqw, 20px);
+  font-size: clamp(9px, 3.4cqw, 12px);
   color: rgba(255, 255, 255, 0.5);
   transition: color 0.35s ease;
 }
@@ -658,14 +683,22 @@ h3 {
 }
 
 .step-card h3 {
+  flex-shrink: 0;
+  margin: 0 0 6px;
+  font-size: clamp(11px, 9cqw, 36px);
+  line-height: 1;
   color: var(--black);
 }
 
 .step-card p {
-  max-width: 24ch;
+  max-width: 100%;
   margin: 0;
+  flex-shrink: 0;
+  font-size: clamp(8px, 5cqw, 18px);
+  line-height: 1.35;
   color: var(--white);
 }
+
 
 .step-card.is-active .step-image,
 .step-card.is-active h3,
@@ -675,6 +708,45 @@ h3 {
 
 .step-card.is-active p {
   color: var(--black);
+}
+
+/* Desktop: show every step at once, no swiping needed */
+@media (min-width: 901px) {
+  .steps-carousel {
+    width: 100%;
+    margin-inline: 0;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding-inline: 0;
+  }
+
+  .step-card {
+    flex: 1 1 0;
+    background: var(--yellow);
+  }
+
+  .step-nav {
+    display: none;
+  }
+
+  .step-image,
+  .step-card h3,
+  .step-card p {
+    opacity: 1;
+  }
+
+  .step-image {
+    filter: brightness(0);
+  }
+
+  .step-card h3,
+  .step-card p {
+    color: var(--black);
+  }
+
+  .step-number {
+    color: rgba(0, 0, 0, 0.55);
+  }
 }
 
 .process-details {
@@ -692,22 +764,41 @@ h3 {
   font-size: clamp(24px, 2.6vw, 40px);
 }
 
-.context-list {
+.context-grid {
   display: grid;
-  gap: clamp(22px, 2.6vw, 32px);
-  margin: 0;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(12px, 1.8vw, 20px);
 }
 
-.context-list dt {
+.context-card {
+  padding: clamp(16px, 2.2vw, 24px);
+  border: 1px solid rgba(252, 238, 33, 0.32);
+  border-radius: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.context-card:hover {
+  border-color: rgba(252, 238, 33, 0.7);
+}
+
+.context-icon {
+  width: clamp(22px, 2.4vw, 28px);
+  height: clamp(22px, 2.4vw, 28px);
+  margin-bottom: clamp(14px, 2vw, 22px);
+  color: var(--yellow);
+}
+
+.context-card-title {
   margin: 0 0 6px;
   font-weight: 600;
   color: var(--white);
 }
 
-.context-list dd {
+.context-card-body {
   margin: 0;
-  max-width: 42ch;
-  color: rgba(255, 255, 255, 0.68);
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.62);
 }
 
 .process-impact-body {
@@ -1159,6 +1250,10 @@ h3 {
     --section-space: 74px;
   }
 
+  .context-grid {
+    grid-template-columns: 1fr;
+  }
+
   .mini-logo img {
     width: 98px;
   }
@@ -1218,15 +1313,15 @@ h3 {
   }
 
   .steps-carousel {
-    --step-card-width: min(86vw, 340px);
+    --step-card-width: min(64vw, 260px);
   }
 
-  .step-card {
-    min-height: 420px;
+  .step-image {
+    height: min(34vw, 130px);
   }
 
   .step-number {
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
 
   .portraits {

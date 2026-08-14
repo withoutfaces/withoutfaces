@@ -41,7 +41,6 @@ if (heroLogoScroll) {
   if (heroLogoVideo) heroLogoVideo.pause();
 
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const VIDEO_PROGRESS_CAP = 0.5;
     let duration = 0;
     let targetProgress = 0;
     let smoothedProgress = 0;
@@ -62,8 +61,8 @@ if (heroLogoScroll) {
 
       heroLogoScroll.style.setProperty("--hero-progress", smoothedProgress.toFixed(4));
 
-      if (heroLogoVideo && duration) {
-        const time = smoothedProgress * duration * VIDEO_PROGRESS_CAP;
+      if (heroLogoVideo && Number.isFinite(duration) && duration > 0) {
+        const time = smoothedProgress * duration;
         if (Math.abs(heroLogoVideo.currentTime - time) > 0.005) {
           heroLogoVideo.currentTime = time;
         }
@@ -87,6 +86,19 @@ if (heroLogoScroll) {
 
     if (heroLogoVideo) {
       const onMetadataReady = () => {
+        if (heroLogoVideo.duration === Infinity || Number.isNaN(heroLogoVideo.duration)) {
+          // Some WebM files don't report a finalized duration until Chrome is
+          // forced to seek past the end once — otherwise duration is Infinity.
+          const fixDuration = () => {
+            heroLogoVideo.removeEventListener("timeupdate", fixDuration);
+            heroLogoVideo.currentTime = 0;
+            duration = heroLogoVideo.duration;
+            updateTarget();
+          };
+          heroLogoVideo.addEventListener("timeupdate", fixDuration);
+          heroLogoVideo.currentTime = 1e101;
+          return;
+        }
         duration = heroLogoVideo.duration;
         updateTarget();
       };
@@ -234,11 +246,11 @@ const translations = {
     de: "Without Faces ist eine multisensorische Erfahrung, bei der Menschen neu lernen, einander zu verstehen. In begleiteten Sessions erfinden die Teilnehmenden ungewohnte Sprachen aus Formen, Farben, Düften und Geschmäckern, um Emotionen sichtbar zu machen.",
   },
   "experiment.body2": {
-    en: "Without Faces gives people a shared experience of deliberate communication. By removing speech and expression, it resets how we pay attention to one another.",
-    de: "Without Faces schenkt Menschen eine gemeinsame Erfahrung bewusster Kommunikation. Indem Sprache und Mimik wegfallen, verändert sich, wie wir einander wahrnehmen.",
+    en: "The session gives people a shared experience of deliberate communication. By removing speech and facial expression, it resets how we pay attention to one another. It’s a space where people meet, sense, and shape emotions together, creating connection without words, without faces.",
+    de: "Die Session gibt Menschen eine gemeinsame Erfahrung bewusster Kommunikation. Indem Sprache und Mimik wegfallen, verändert sich, wie wir einander wahrnehmen. Es ist ein Raum, in dem Menschen sich begegnen, spüren und gemeinsam Emotionen formen – Verbindung ohne Worte, ohne Gesichter.",
   },
   "experiment.body3": {
-    en: "It's a space where people meet, sense, and shape emotions together, creating connection without words, without faces.",
+    en: "It’s a space where people meet, sense, and shape emotions together, creating connection without words, without faces.",
     de: "Es ist ein Raum, in dem Menschen sich begegnen, spüren und gemeinsam Emotionen formen – Verbindung ohne Worte, ohne Gesichter.",
   },
 
@@ -259,7 +271,7 @@ const translations = {
   "process.step5.title": { en: "Reflect", de: "Reflektieren" },
   "process.step5.body": { en: "Compare what was meant with what was understood.", de: "Vergleicht, was gemeint war, mit dem, was verstanden wurde." },
 
-  "process.context.title": { en: "Context", de: "Kontext" },
+  "process.context.title": { en: "For Whom?", de: "Für wen?" },
   "process.context.couples.title": { en: "Couples & Dates", de: "Paare & Dates" },
   "process.context.couples.body": {
     en: "A new way to notice each other, first date or years in.",
@@ -281,7 +293,7 @@ const translations = {
     de: "Ein praktischer Weg, Empathie und Ausdruck zu erkunden.",
   },
 
-  "process.impact.title": { en: "Impact", de: "Wirkung" },
+  "process.impact.title": { en: "Why Try It?", de: "Warum ausprobieren?" },
   "process.impact.body": {
     en: "The experience makes people feel something they rarely notice: that communication is built, not given. When the usual channels close, emotion is still there, but it can't reach anyone. That loss is real, and so is what replaces it. People stop relying on words and start inventing, and in that invention they often understand each other more honestly than they did before. You leave with the memory of reaching someone with nothing but attention, and being reached for in return.",
     de: "Die Erfahrung lässt Menschen etwas spüren, das sie selten bemerken: dass Kommunikation erschaffen wird, nicht gegeben ist. Wenn die gewohnten Kanäle sich schließen, ist die Emotion noch da – sie kann nur niemanden erreichen. Dieser Verlust ist real, und das, was ihn ersetzt, ist es auch. Menschen hören auf, sich auf Worte zu verlassen, und beginnen zu erfinden – und in diesem Erfinden verstehen sie einander oft ehrlicher als zuvor. Am Ende bleibt die Erinnerung daran, jemanden mit nichts als Aufmerksamkeit erreicht zu haben – und selbst erreicht worden zu sein.",
@@ -374,8 +386,8 @@ const translations = {
     de: "Without Faces entstand aus unserer Masterarbeit im Bereich Speculative Design. Bei der Arbeit in diesem Feld fiel uns auf, dass Emotionen darin selten eine Rolle spielen – also entwarfen wir eine spekulative Zukunft, um genau das zu untersuchen: eine Welt, in der Menschen identische Gesichter und Stimmen teilen und, getrieben von Produktivität und voneinander entfremdet, die Fähigkeit verloren haben, Gefühle auszudrücken oder zu erkennen.",
   },
   "research.body2": {
-    en: "Where traditional speculative design leans toward tech-driven dystopia, our 247-page thesis proposes an alternative we call Human-Centered Speculative Design, an approach rooted in emotion, connection, and empathy.",
-    de: "Während klassisches Speculative Design meist zu technikgetriebenen Dystopien tendiert, schlägt unsere 247-seitige Masterarbeit eine Alternative vor, die wir Human-Centered Speculative Design nennen – einen Ansatz, der in Emotion, Verbindung und Empathie verwurzelt ist.",
+    en: "Where traditional speculative design leans toward tech-driven dystopia, our 247-page thesis proposes an alternative we call Human-Centered Speculative Design, an approach rooted in emotion, connection, and empathy. The project received an ADC Silver Award in the Communication Arts category.",
+    de: "Während klassisches Speculative Design meist zu technikgetriebenen Dystopien tendiert, schlägt unsere 247-seitige Masterarbeit eine Alternative vor, die wir Human-Centered Speculative Design nennen – einen Ansatz, der in Emotion, Verbindung und Empathie verwurzelt ist. Das Projekt erhielt die ADC Silver Award in der Kategorie Communication Arts.",
   },
   "research.thesis.title": { en: "Thesis", de: "Masterarbeit" },
   "research.thesis.link": { en: "Read", de: "Lesen" },
@@ -394,8 +406,8 @@ const translations = {
   "teams.kicker": { en: "For teams", de: "Für Teams" },
   "teams.heading": { en: "Booking", de: "Buchung" },
   "teams.body": {
-    en: "Teams that go through the experience together learn to listen more carefully and read each other beyond words. It becomes a shared reference point the whole team can return to.",
-    de: "Teams, die die Erfahrung gemeinsam durchlaufen, lernen, aufmerksamer zuzuhören und einander jenseits von Worten zu lesen. Es wird zu einem gemeinsamen Bezugspunkt, auf den das ganze Team zurückgreifen kann.",
+    en: "Whether it is your team, your friends, or someone you love, Without Faces gives you the chance to truly understand one another. Tell us a little about your group, and we will shape a session around it.",
+    de: "Ob es dein Team, deine Freunde oder jemand ist, den du liebst: Without Faces gibt euch die Chance, einander wirklich zu verstehen. Erzähle uns ein wenig über eure Gruppe, und wir gestalten eine Session passend dazu.",
   },
   "teams.benefit1": { en: "Sharper listening", de: "Schärferes Zuhören" },
   "teams.benefit2": { en: "Renewed trust", de: "Erneuertes Vertrauen" },
